@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CategoriesReactionsURL</key>
+	<string>https://api.giphy.com/v1/gifs/categories/reactions?api_key=%@&amp;limit=%d&amp;offset=%d</string>
+	<key>CategoriesActionsURL</key>
+	<string>https://api.giphy.com/v1/gifs/categories/actions?api_key=%@&amp;limit=%d&amp;offset=%d</string>
+	<key>CategoriesEmotionsURL</key>
+	<string>https://api.giphy.com/v1/gifs/categories/emotions?api_key=%@&amp;limit=%d&amp;offset=%d</string>
+	<key>CategoriesMemesURL</key>
+	<string>https://api.giphy.com/v1/gifs/categories/memes?api_key=%@&amp;limit=%d&amp;offset=%d</string>
+	<key>CategoriesSortURL</key>
+	<string>https://api.giphy.com/v1/gifs/categories?sort=%@&amp;limit=%d&amp;api_key=%@</string>
+	<key>RandomURL</key>
+	<string>https://api.giphy.com/v1/gifs/random?api_key=%@</string>
+	<key>SearchURL</key>
+	<string>https://api.giphy.com/v1/gifs/search?q=%@&amp;api_key=%@&amp;limit=%d&amp;offset=%d</string>
+	<key>TrendingURL</key>
+	<string>https://api.giphy.com/v1/gifs/trending?api_key=%@&amp;limit=%d%d&amp;offset=%d</string>
+	<key>DetailWithIDURL</key>
+	<string>https://api.giphy.com/v1/gifs/%@?api_key=%@</string>
+	<key>StickersSearchURL</key>
+	<string>https://api.giphy.com/v1/stickers/search?q=%@&amp;api_key=%@&amp;offset=%d&amp;limit=%d</string>
+	<key>StickersTrendingURL</key>
+	<string>https://api.giphy.com/v1/stickers/trending?api_key=%@&amp;offset=%d&amp;limit=%d</string>
+	<key>StickersTranslateURL</key>
+	<string>https://api.giphy.com/v1/stickers/translate?s=%@&amp;api_key=%@</string>
+	<key>StickersRandomURL</key>
+	<string>https://api.giphy.com/v1/stickers/random?api_key=%@&amp;tag=%@</string>
+</dict>
+</plist>
