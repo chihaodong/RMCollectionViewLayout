@@ -30,9 +30,9 @@ import UIKit
     @objc optional func edgeInsetsInLayout(_ collectionViewLayout: RMCollectionViewLayout) -> UIEdgeInsets
 }
 /** 滚动方向 */
-enum ScrollDirection {
-    case Horizontal
-    case Vertical
+enum ScrollDirection: Int {
+    case horizontal = 0
+    case vertical   = 1
 }
 
 class RMCollectionViewLayout: UICollectionViewLayout {
@@ -58,7 +58,7 @@ class RMCollectionViewLayout: UICollectionViewLayout {
     /** 存放宽度数组 用于水平滚动 */
     var rowWidths = [CGFloat]()
     /** 滚动方向 默认垂直 */
-    var scrollDirection: ScrollDirection = .Vertical
+    var scrollDirection: ScrollDirection = .vertical
     
     // 代理
     weak var delegate: RMCollectionViewLayoutDelegate!
@@ -161,7 +161,7 @@ class RMCollectionViewLayout: UICollectionViewLayout {
     
     /** 判断滚动方向 */
     func collectinViewScrollDirection() -> Bool {
-        if scrollDirection == .Vertical { // 垂直滚动
+        if scrollDirection == .vertical { // 垂直滚动
             return true
         } else { // 水平滚动
             return false
