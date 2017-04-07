@@ -20,7 +20,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         // 设置代理
         layout.delegate = self
         // 设置滚动方向 默认垂直
-        layout.scrollDirection = .Horizontal
+        layout.scrollDirection = .horizontal
         
         let collectionView = UICollectionView(frame: view.frame, collectionViewLayout: layout)
         collectionView.delegate = self;
