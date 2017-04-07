@@ -129,7 +129,7 @@ class RMCollectionViewLayout: UICollectionViewLayout {
         var y = collectinViewScrollDirection() ? minColumnHeightOrWidth : edgeInsets().top + (CGFloat(minColumnOrRow) * (h + rowMargin()))
         if y != edgeInsets().top && collectinViewScrollDirection(){
             y += rowMargin()
-        } else if x != edgeInsets().left {
+        } else if x != edgeInsets().left && !collectinViewScrollDirection() {
             x += columnMargin()
         }
         //        print("宽度：\(w)，高度：\(h)")
