@@ -1,5 +1,11 @@
 # RMCollectionViewLayout
 
+## 效果图
+
+![image](https://github.com/chihaodong/RMCollectionViewLayout/blob/master/Untitled.gif)
+
+![image](https://github.com/chihaodong/RMCollectionViewLayout/blob/master/Untitled1.gif)
+
 ## 说明
 
 Swift 3.0 创建的RMCollectionViewLayout框架
