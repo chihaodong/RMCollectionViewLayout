@@ -56,4 +56,10 @@ func collectionViewLayout(_ collectionViewLayout: RMCollectionViewLayout, widthF
 
 ## 项目执行方法
 
-进入项目根目录 执行 `pod install` 
+进入项目根目录 执行 `pod install`
+
+ 
+## 更新警告，提示升级到Swift 3 解决方法如图所示设置
+![image](https://github.com/chihaodong/RMCollectionViewLayout/blob/master/2017-04-13_17-45-14.jpg)
+
+
