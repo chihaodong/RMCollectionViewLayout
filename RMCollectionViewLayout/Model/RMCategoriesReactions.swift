@@ -7,13 +7,17 @@
 //
 
 import UIKit
-import HandyJSON
+import MJExtension
 
-struct RMCategoriesReactions: HandyJSON {
+class RMCategoriesReactions: NSObject {
     
     var data: [RMData] = []
     var pagination: RMPagination!
     var meta: RMMeta!
+    
+    override func mj_keyValuesDidFinishConvertingToObject() {
+        self.data = RMData.mj_objectArray(withKeyValuesArray: self.data).copy() as! [RMData]
+    }
 }
 
 

@@ -7,11 +7,10 @@
 //
 
 import UIKit
-import HandyJSON
 
-struct RMMeta: HandyJSON {
+class RMMeta: NSObject {
 
-    var status: Int?
+    var status: String?
     var msg: String?
     var response_id: String?
 }

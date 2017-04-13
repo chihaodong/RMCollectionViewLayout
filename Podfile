@@ -6,8 +6,8 @@ platform :ios, '10.0'
 
 target 'RMCollectionViewLayout' do
     use_frameworks!
-    pod 'Alamofire', '~> 4.4'
+    pod 'Alamofire'
     pod 'YYWebImage'
     pod 'YYImage/WebP'
-    pod 'HandyJSON'
+    pod 'MJExtension'
 end

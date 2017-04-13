@@ -29,7 +29,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         collectionView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         view.addSubview(collectionView)
         // 网络请求数据
-        RMNetTool.categoriesReactionsURL(limit: 50, offset: 0) { arr in
+        RMNetTool.categoriesReactionsURL(50, offset: 0) { arr in
             self.array = arr
             collectionView.reloadData()
         }
@@ -83,7 +83,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     // 设置整体边缘间距 不设置有默认值
     func edgeInsetsInLayout(_ collectionViewLayout: RMCollectionViewLayout) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 20, left: 40, bottom: 20, right: 10)
+        return UIEdgeInsets(top: 20, left: 10, bottom: 20, right: 40)
     }
 
 }

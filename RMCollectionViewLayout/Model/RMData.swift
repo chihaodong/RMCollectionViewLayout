@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import HandyJSON
 
-struct RMData : HandyJSON {
+class RMData: NSObject {
 
     var name_encoded: String?
     var name: String?
@@ -17,7 +16,7 @@ struct RMData : HandyJSON {
 }
 
 
-struct Gif : HandyJSON {
+class Gif: NSObject {
     var type: String?
     var id: String?
     var slug: String?
@@ -29,8 +28,8 @@ struct Gif : HandyJSON {
     var source: String?
     var rating: String?
     var content_url: String?
-    var tags: [Tags] = []
-    var featured_tags: [Featured_tags] = []
+    var tags: [String]?
+    var featured_tags: [String]?
     var source_tld: String?
     var source_post_url: String? 
     var is_hidden: Int?
@@ -49,38 +48,30 @@ struct Gif : HandyJSON {
 
 }
 
-struct Tags: HandyJSON {
-    
+class Images: NSObject {
+    var fixed_height: Fixed_height?
+    var fixed_height_still: fixed_height_still?
+    var fixed_height_downsampled: fixed_height_downsampled?
+    var fixed_width: fixed_width!
+    var fixed_width_still: fixed_width_still?
+    var fixed_width_downsampled: fixed_width_downsampled?
+    var fixed_height_small: fixed_height_small?
+    var fixed_height_small_still: fixed_height_small_still?
+    var fixed_width_small: fixed_width_small?
+    var fixed_width_small_still: fixed_width_small_still?
+    var downsized: downsized?
+    var downsized_still: downsized_still?
+    var downsized_large: downsized_large?
+    var downsized_medium: downsized_medium?
+    var original: original?
+    var original_still: original_still?
+    var looping: looping?
+    var preview: preview?
+    var downsized_small: downsized_small?
+    var preview_gif: preview_gif?
 }
 
-struct Featured_tags: HandyJSON {
-    
-}
-
-struct Images: HandyJSON {
-    let fixed_height: Fixed_height? = nil
-    let fixed_height_still: fixed_height_still? = nil
-    let fixed_height_downsampled: fixed_height_downsampled? = nil
-    let fixed_width: fixed_width! = nil
-    let fixed_width_still: fixed_width_still? = nil
-    let fixed_width_downsampled: fixed_width_downsampled? = nil
-    let fixed_height_small: fixed_height_small? = nil
-    let fixed_height_small_still: fixed_height_small_still? = nil
-    let fixed_width_small: fixed_width_small? = nil
-    let fixed_width_small_still: fixed_width_small_still? = nil
-    let downsized: downsized? = nil
-    let downsized_still: downsized_still? = nil
-    let downsized_large: downsized_large? = nil
-    let downsized_medium: downsized_medium? = nil
-    let original: original? = nil
-    let original_still: original_still? = nil
-    let looping: looping? = nil
-    let preview: preview? = nil
-    let downsized_small: downsized_small? = nil
-    let preview_gif: preview_gif? = nil
-}
-
-struct Fixed_height: HandyJSON {
+class Fixed_height: NSObject {
     var url: String?
     var width: String?
     var height: String?
@@ -90,13 +81,13 @@ struct Fixed_height: HandyJSON {
     var webp_size: String?
 }
 
-struct fixed_height_still: HandyJSON {
+class fixed_height_still: NSObject {
     var url: String?
     var width: String?
     var height: String?
 }
 
-struct fixed_height_downsampled: HandyJSON {
+class fixed_height_downsampled: NSObject {
     var url: String?
     var width: String?
     var height: String?
@@ -105,7 +96,7 @@ struct fixed_height_downsampled: HandyJSON {
     var webp_size: String?
 }
 
-struct fixed_width: HandyJSON {
+class fixed_width: NSObject {
     var url: String?
     var width: String?
     var height: String?
@@ -116,13 +107,13 @@ struct fixed_width: HandyJSON {
     var webp_size: String?
 }
 
-struct fixed_width_still: HandyJSON {
+class fixed_width_still: NSObject {
     var url: String?
     var width: String?
     var height: String?
 }
 
-struct fixed_width_downsampled: HandyJSON {
+class fixed_width_downsampled: NSObject {
     var url: String?
     var width: String?
     var height: String?
@@ -131,7 +122,7 @@ struct fixed_width_downsampled: HandyJSON {
     var webp_size: String?
 }
 
-struct fixed_height_small: HandyJSON {
+class fixed_height_small: NSObject {
     var url: String?
     var width: String?
     var height: String?
@@ -142,13 +133,13 @@ struct fixed_height_small: HandyJSON {
     var webp_size: String?
 }
 
-struct fixed_height_small_still: HandyJSON {
+class fixed_height_small_still: NSObject {
     var url: String?
     var width: String?
     var height: String?
 }
 
-struct fixed_width_small: HandyJSON {
+class fixed_width_small: NSObject {
     var url: String?
     var width: String?
     var height: String?
@@ -159,41 +150,41 @@ struct fixed_width_small: HandyJSON {
     var webp_size: String?
 }
 
-struct fixed_width_small_still: HandyJSON {
+class fixed_width_small_still: NSObject {
     var url: String?
     var width: String?
     var height: String?
 }
 
-struct downsized: HandyJSON {
-    var url: String?
-    var width: String?
-    var height: String?
-    var size: String?
-}
-
-struct downsized_still: HandyJSON {
+class downsized: NSObject {
     var url: String?
     var width: String?
     var height: String?
     var size: String?
 }
 
-struct downsized_large: HandyJSON {
+class downsized_still: NSObject {
     var url: String?
     var width: String?
     var height: String?
     var size: String?
 }
 
-struct downsized_medium: HandyJSON {
+class downsized_large: NSObject {
     var url: String?
     var width: String?
     var height: String?
     var size: String?
 }
 
-struct original: HandyJSON {
+class downsized_medium: NSObject {
+    var url: String?
+    var width: String?
+    var height: String?
+    var size: String?
+}
+
+class original: NSObject {
     var url: String?
     var width: String?
     var height: String?
@@ -205,31 +196,31 @@ struct original: HandyJSON {
     var webp_size: String?
 }
 
-struct original_still: HandyJSON {
+class original_still: NSObject {
     var url: String?
     var width: String?
     var height: String?
 }
 
-struct looping: HandyJSON {
+class looping: NSObject {
     var mp4: String?
 }
 
-struct preview: HandyJSON {
-    var mp4: String?
-    var mp4_size: String?
-    var width: String?
-    var height: String?
-}
-
-struct downsized_small: HandyJSON {
+class preview: NSObject {
     var mp4: String?
     var mp4_size: String?
     var width: String?
     var height: String?
 }
 
-struct preview_gif: HandyJSON {
+class downsized_small: NSObject {
+    var mp4: String?
+    var mp4_size: String?
+    var width: String?
+    var height: String?
+}
+
+class preview_gif: NSObject {
     var url: String?
     var width: String?
     var height: String?

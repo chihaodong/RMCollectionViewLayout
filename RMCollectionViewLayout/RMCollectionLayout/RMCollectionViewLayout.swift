@@ -132,7 +132,7 @@ class RMCollectionViewLayout: UICollectionViewLayout {
         } else if x != edgeInsets().left && !collectinViewScrollDirection() {
             x += columnMargin()
         }
-        //        print("宽度：\(w)，高度：\(h)")
+        // print("宽度：\(w)，高度：\(h)")
         // 设置位置
         attr.frame = CGRect(x: Double(x), y: Double(y), width: Double(w), height: Double(h))
         
@@ -170,43 +170,84 @@ class RMCollectionViewLayout: UICollectionViewLayout {
     
     /** 代理获取行数 水平滚动 */
     func rowCount() -> NSInteger {
+        
+        guard let rowCount = delegate.rowCountInLayout?(self) else {
+            return defaultRowCount
+        }
+        return rowCount
+        
+        /**
+         * 这个写法同上面效果一样，但是推荐上面Swift写法
         if delegate.responds(to: #selector(RMCollectionViewLayoutDelegate.rowCountInLayout(_:))) {
             return delegate.rowCountInLayout!(self)
         } else {
             return defaultRowCount
         }
+        */
     }
     /** 代理获取列数 垂直滚动 */
     func columnCount() -> NSInteger {
+        
+        guard let columnCount = delegate.columnCountInLayout?(self) else {
+            return defaultColumnCount
+        }
+        return columnCount
+        
+        /**
         if delegate.responds(to: #selector(RMCollectionViewLayoutDelegate.columnCountInLayout(_:))) {
             return delegate.columnCountInLayout!(self)
         } else {
             return defaultColumnCount
         }
+        */
     }
     /** 代理获取列间距 */
     func columnMargin() -> CGFloat {
+        
+        guard let columnMargin = delegate.columnMarginInLayout?(self) else {
+            return CGFloat(defaultColumnMargin)
+        }
+        return columnMargin
+        
+        /**
         if delegate.responds(to: #selector(RMCollectionViewLayoutDelegate.columnMarginInLayout(_:))) {
             return delegate.columnMarginInLayout!(self)
         } else {
             return CGFloat(defaultColumnMargin)
         }
+        */
     }
     /** 代理获取行间距 */
     func rowMargin() -> CGFloat {
+        
+        guard let rowMargin = delegate.rowMarginInLayout?(self) else {
+            return CGFloat(defaultRowMargin)
+        }
+        return rowMargin
+        
+        /**
         if delegate.responds(to: #selector(RMCollectionViewLayoutDelegate.rowMarginInLayout(_:))) {
             return delegate.rowMarginInLayout!(self)
         } else {
             return CGFloat(defaultRowMargin)
         }
+        */
     }
     /** 代理获取上左下右间距 */
     func edgeInsets() -> UIEdgeInsets {
+        
+        guard let edgeInsets = delegate.edgeInsetsInLayout?(self) else {
+            return defaultEdgeInsets
+        }
+        return edgeInsets
+        
+        /**
         if delegate.responds(to: #selector(RMCollectionViewLayoutDelegate.edgeInsetsInLayout(_:))) {
             return delegate.edgeInsetsInLayout!(self)
         } else {
             return defaultEdgeInsets
         }
+        */
     }
 }
 

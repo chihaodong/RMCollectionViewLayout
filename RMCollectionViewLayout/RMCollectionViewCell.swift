@@ -14,7 +14,7 @@ class RMCollectionViewCell: UICollectionViewCell {
     
     var model :RMData? {
         didSet {
-            let url = NSURL(string:(model?.gif?.images.preview_gif?.url)!)! as URL
+            let url = URL(string:(model?.gif?.images.preview_gif?.url)!)! as URL
             imageView.yy_setImage(with: url, options: .progressive)
             
         }
@@ -24,6 +24,7 @@ class RMCollectionViewCell: UICollectionViewCell {
     override init(frame:CGRect) {
         super.init(frame: frame)
         self.imageView.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height)
+        imageView.backgroundColor = UIColor.gray
         self.addSubview(self.imageView)
     }
     

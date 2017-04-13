@@ -8,7 +8,7 @@
 
 import UIKit
 import Alamofire
-import HandyJSON
+import MJExtension
 
 let GiphyKey = "dc6zaTOxFJmzC"
 
@@ -20,7 +20,7 @@ class RMNetTool: NSObject {
     
     
     
-    static func categoriesReactionsURL(limit: Int, offset: Int, block:@escaping (([RMData]) -> Void)) {
+    static func categoriesReactionsURL(_ limit: Int, offset: Int, block:@escaping (([RMData]) -> Void)) {
         
         let dict = NSDictionary(contentsOfFile: Bundle.main.path(forResource: "URLs", ofType: "plist")!)
         let url = dict?[CategoriesReactionsURL]
@@ -29,11 +29,13 @@ class RMNetTool: NSObject {
         
         Alamofire.request(urlStrin).responseJSON { response in
             print(response)
-            let categoryList = RMCategoriesReactions.deserialize(from: NSString(data:response.data! ,encoding: String.Encoding.utf8.rawValue)! as String)
-            if categoryList?.meta?.status == 200 {
-                block((categoryList?.data)!)
-            } else {
-                block([])
+            
+            if let categoryList = RMCategoriesReactions.mj_object(withKeyValues: response.data) {
+                if Int((categoryList.meta?.status)!) == 200 {
+                    block(categoryList.data)
+                } else {
+                    block([])
+                }
             }
             
         }

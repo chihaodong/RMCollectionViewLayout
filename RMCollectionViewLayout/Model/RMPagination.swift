@@ -7,10 +7,9 @@
 //
 
 import UIKit
-import HandyJSON
 
-struct RMPagination: HandyJSON {
+class RMPagination: NSObject {
 
-    var total_count: Int?
-    var count: Int?
+    var total_count: String?
+    var count: String?
 }
