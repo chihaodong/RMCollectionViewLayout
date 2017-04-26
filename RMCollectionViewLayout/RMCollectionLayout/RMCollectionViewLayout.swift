@@ -48,15 +48,15 @@ class RMCollectionViewLayout: UICollectionViewLayout {
     /** 上左下右间距 */
     let defaultEdgeInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
     /** 存放位置的数组 */
-    var attributes: [UICollectionViewLayoutAttributes] = []
+    private var attributes: [UICollectionViewLayoutAttributes] = []
     /** 内容高度 用于垂直滚动 */
-    var contentHeight: CGFloat = 0.0
+    private var contentHeight: CGFloat = 0.0
     /** 内容宽度 用于水平滚动*/
-    var contentWidth: CGFloat = 0.0
+    private var contentWidth: CGFloat = 0.0
     /** 存放高度数组 用于垂直滚动 */
-    var columnHeights = [CGFloat]()
+    private var columnHeights = [CGFloat]()
     /** 存放宽度数组 用于水平滚动 */
-    var rowWidths = [CGFloat]()
+    private var rowWidths = [CGFloat]()
     /** 滚动方向 默认垂直 */
     var scrollDirection: ScrollDirection = .vertical
     
@@ -160,7 +160,7 @@ class RMCollectionViewLayout: UICollectionViewLayout {
     }
     
     /** 判断滚动方向 */
-    func collectinViewScrollDirection() -> Bool {
+    private func collectinViewScrollDirection() -> Bool {
         if scrollDirection == .vertical { // 垂直滚动
             return true
         } else { // 水平滚动
@@ -169,7 +169,7 @@ class RMCollectionViewLayout: UICollectionViewLayout {
     }
     
     /** 代理获取行数 水平滚动 */
-    func rowCount() -> NSInteger {
+    private func rowCount() -> NSInteger {
         
         guard let rowCount = delegate.rowCountInLayout?(self) else {
             return defaultRowCount
@@ -186,7 +186,7 @@ class RMCollectionViewLayout: UICollectionViewLayout {
         */
     }
     /** 代理获取列数 垂直滚动 */
-    func columnCount() -> NSInteger {
+    private func columnCount() -> NSInteger {
         
         guard let columnCount = delegate.columnCountInLayout?(self) else {
             return defaultColumnCount
@@ -202,7 +202,7 @@ class RMCollectionViewLayout: UICollectionViewLayout {
         */
     }
     /** 代理获取列间距 */
-    func columnMargin() -> CGFloat {
+    private func columnMargin() -> CGFloat {
         
         guard let columnMargin = delegate.columnMarginInLayout?(self) else {
             return CGFloat(defaultColumnMargin)
@@ -218,7 +218,7 @@ class RMCollectionViewLayout: UICollectionViewLayout {
         */
     }
     /** 代理获取行间距 */
-    func rowMargin() -> CGFloat {
+    private func rowMargin() -> CGFloat {
         
         guard let rowMargin = delegate.rowMarginInLayout?(self) else {
             return CGFloat(defaultRowMargin)
@@ -234,7 +234,7 @@ class RMCollectionViewLayout: UICollectionViewLayout {
         */
     }
     /** 代理获取上左下右间距 */
-    func edgeInsets() -> UIEdgeInsets {
+    private func edgeInsets() -> UIEdgeInsets {
         
         guard let edgeInsets = delegate.edgeInsetsInLayout?(self) else {
             return defaultEdgeInsets
