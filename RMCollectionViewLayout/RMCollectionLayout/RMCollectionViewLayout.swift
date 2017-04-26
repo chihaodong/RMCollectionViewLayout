@@ -35,7 +35,18 @@ enum ScrollDirection: Int {
     case vertical   = 1
 }
 
+/// 头部Header 标识
+let kSupplementaryViewKindHeader = "kSupplementaryViewKindHeader"
+
 class RMCollectionViewLayout: UICollectionViewLayout {
+    
+    /** 默认header高度 */
+    var defaultHeaderHeight: CGFloat = 40.0
+    /** 是否有Header，默认为false（没有）, 与defaultHeaderHeight结合使用 */
+    var isLoadHeader = false
+    /** 头部的HeaderView是否随着滚动固定顶部 */
+    private var isFollowScroll: Bool {return true}
+    
     
     /** 列数 用于垂直滚动*/
     var defaultColumnCount = 2
@@ -91,6 +102,12 @@ class RMCollectionViewLayout: UICollectionViewLayout {
     }
     // 返回位置数组
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+        if isLoadHeader {
+            /** 添加一个头部 */
+            let indexPath = IndexPath(item: 0, section: 0)
+            let attr = self.layoutAttributesForSupplementaryView(ofKind: kSupplementaryViewKindHeader, at: indexPath)
+            attributes.append(attr!)
+        }
         return attributes
     }
     // 内容总高度、宽度
@@ -126,7 +143,9 @@ class RMCollectionViewLayout: UICollectionViewLayout {
         
         // 计算 x y 位置
         var x = collectinViewScrollDirection() ? edgeInsets().left + (CGFloat(minColumnOrRow) * (w + columnMargin())) : minColumnHeightOrWidth
-        var y = collectinViewScrollDirection() ? minColumnHeightOrWidth : edgeInsets().top + (CGFloat(minColumnOrRow) * (h + rowMargin()))
+//        var y = collectinViewScrollDirection() ? minColumnHeightOrWidth : edgeInsets().top + (CGFloat(minColumnOrRow) * (h + rowMargin()))
+        var y = collectinViewScrollDirection() ? minColumnHeightOrWidth == edgeInsets().top && isLoadHeader ? defaultHeaderHeight : minColumnHeightOrWidth : edgeInsets().top + (CGFloat(minColumnOrRow) * (h + rowMargin()))
+        
         if y != edgeInsets().top && collectinViewScrollDirection(){
             y += rowMargin()
         } else if x != edgeInsets().left && !collectinViewScrollDirection() {
@@ -157,6 +176,23 @@ class RMCollectionViewLayout: UICollectionViewLayout {
         
         
         return attr
+    }
+    
+    // 头部Header设置,暂时只支持一组
+    override func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        let attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: elementKind, with: indexPath)
+        
+        if elementKind == kSupplementaryViewKindHeader {
+            
+            let width = self.collectionView?.bounds.size.width
+            let height: CGFloat = defaultHeaderHeight
+            
+            let offsetY = self.collectionView!.contentOffset.y
+            let y =  isFollowScroll ? 0 : max(0,offsetY)
+            attributes.frame = CGRect(x: 0, y: y, width: width!, height: height)
+        }
+        
+        return attributes
     }
     
     /** 判断滚动方向 */

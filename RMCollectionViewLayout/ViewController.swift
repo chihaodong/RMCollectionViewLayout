@@ -17,17 +17,23 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         // 自定义Layout
         let layout = RMCollectionViewLayout()
+        /** 设置头部必须的条件 暂时只能针对垂直滚动有效果，不支持水平滚动*/
+        layout.defaultHeaderHeight = 38
+        layout.isLoadHeader = true
+        /** 设置头部必须的条件 end */
         // 设置代理
         layout.delegate = self
         // 设置滚动方向 默认垂直
-        layout.scrollDirection = .horizontal
+        layout.scrollDirection = .vertical
         
         let collectionView = UICollectionView(frame: view.frame, collectionViewLayout: layout)
         collectionView.delegate = self;
         collectionView.dataSource = self;
-        collectionView.register(RMCollectionViewCell.self, forCellWithReuseIdentifier: "RMCollectionViewCell")
         collectionView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         view.addSubview(collectionView)
+        
+        collectionView.register(RMCollectionViewCell.self, forCellWithReuseIdentifier: "RMCollectionViewCell")
+        collectionView.register(RMHeaderCollectionView.self, forSupplementaryViewOfKind: kSupplementaryViewKindHeader, withReuseIdentifier: RMHeaderCollectionViewID)
         // 网络请求数据
         RMNetTool.categoriesReactionsURL(50, offset: 0) { arr in
             self.array = arr
@@ -48,6 +54,15 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         cell.model = data
         
         return cell;
+    }
+    // 设置头部Header
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == kSupplementaryViewKindHeader {
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: RMHeaderCollectionViewID, for: indexPath) as! RMHeaderCollectionView
+            
+            return header
+        }
+        return UICollectionReusableView()
     }
     
     // MARK - collectionViewLayoutDelegate
