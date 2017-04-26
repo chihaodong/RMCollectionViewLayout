@@ -5,7 +5,9 @@
 ![image](https://github.com/chihaodong/RMCollectionViewLayout/blob/master/gif/Untitled.gif)
 
 ![image](https://github.com/chihaodong/RMCollectionViewLayout/blob/master/gif/Untitled1.gif)
+
 ###有header效果
+
 ![image](https://github.com/chihaodong/RMCollectionViewLayout/blob/master/gif/header.gif)
 
 ## 说明
