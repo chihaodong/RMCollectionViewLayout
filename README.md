@@ -2,9 +2,11 @@
 
 ## 效果图
 
-![image](https://github.com/chihaodong/RMCollectionViewLayout/blob/master/Untitled.gif)
+![image](https://github.com/chihaodong/RMCollectionViewLayout/blob/master/gif/Untitled.gif)
 
-![image](https://github.com/chihaodong/RMCollectionViewLayout/blob/master/Untitled1.gif)
+![image](https://github.com/chihaodong/RMCollectionViewLayout/blob/master/gif/Untitled1.gif)
+###有header效果
+![image](https://github.com/chihaodong/RMCollectionViewLayout/blob/master/gif/header.gif)
 
 ## 说明
 
@@ -15,6 +17,32 @@ Swift 3.0 创建的RMCollectionViewLayout框架
 完全独立于模型
 
 项目中设计到`网络请求  Json->模型`等基本操作，适合新手学习 
+
+增加头部Header功能，默认只支持一组。
+
+##Header功能
+需要在设置Layout时声明
+```
+layout.isLoadHeader = true       // 允许载入Header，false时，设置高度无效
+layout.defaultHeaderHeight = 38  // header高度
+```
+注册Cell
+```
+collectionView.register(RMHeaderCollectionView.self, forSupplementaryViewOfKind: kSupplementaryViewKindHeader, withReuseIdentifier: RMHeaderCollectionViewID)
+```
+
+实现代理方法
+```
+// 设置头部Header 代理方法
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == kSupplementaryViewKindHeader {
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: RMHeaderCollectionViewID, for: indexPath) as! RMHeaderCollectionView
+            
+            return header
+        }
+        return UICollectionReusableView()
+    }
+```
 
 ## 使用方法
 
@@ -52,6 +80,21 @@ func collectionViewLayout(_ collectionViewLayout: RMCollectionViewLayout, widthF
 /** 上左下右间距 */
 @objc optional func edgeInsetsInLayout(_ collectionViewLayout: RMCollectionViewLayout) -> UIEdgeInsets
 }
+```
+
+###5个可选代理方法同样可以使用如下属性方式进行设置
+
+```
+/** 列数 用于垂直滚动*/
+var defaultColumnCount = 2
+/** 行数 用于水平滚动*/
+var defaultRowCount = 2
+/** 列间距 */
+var defaultColumnMargin = 10.0
+/** 行间距 */
+var defaultRowMargin = 10.0
+/** 上左下右间距 */
+var defaultEdgeInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
 ```
 
 ## 项目执行方法
