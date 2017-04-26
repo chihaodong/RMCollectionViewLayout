@@ -38,15 +38,15 @@ enum ScrollDirection: Int {
 class RMCollectionViewLayout: UICollectionViewLayout {
     
     /** 列数 用于垂直滚动*/
-    let defaultColumnCount = 2
+    var defaultColumnCount = 2
     /** 行数 用于水平滚动*/
-    let defaultRowCount = 2
+    var defaultRowCount = 2
     /** 列间距 */
-    let defaultColumnMargin = 10.0
+    var defaultColumnMargin = 10.0
     /** 行间距 */
-    let defaultRowMargin = 10.0
+    var defaultRowMargin = 10.0
     /** 上左下右间距 */
-    let defaultEdgeInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
+    var defaultEdgeInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
     /** 存放位置的数组 */
     private var attributes: [UICollectionViewLayoutAttributes] = []
     /** 内容高度 用于垂直滚动 */
